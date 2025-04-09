@@ -132,5 +132,14 @@ kubectl get svc -n ingress-nginx
 ```
 - create ipaddresspool.yaml and l2advertisement.yaml. And edit your ip address pool
 
+## Dont forget if you have nfs file server, you mast change nfs server ip and  the shared file name in pv-mysql.yaml file. Else you mast create nfs file server
+```text
+nfs:
+    path: /export/nfs-share 
+    server: 192.168.142.200
+```
+
+
+
 
 
