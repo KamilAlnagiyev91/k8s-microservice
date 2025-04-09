@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mystatefulset-mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+          name: db
+        volumeMounts:
+        - name: mysql-pvc
+          mountPath: /var/lib/mysql
+        envFrom:
+        - secretRef:
+            name: mysql-secret
+        - configMapRef:
+            name: server-configmap
+
+        #env:
+        # - name: MYSQL_ROOT_PASSWORD
+        #   value: Pl123456
+        #   valueFrom:
+        #     secretKeyRef:
+        #       key: mysql_root_password
+        #       name: mysql-secret
+        # - name: MYSQL_PASSWORD
+        #   value: Clarusway_1
+        #   valueFrom:
+        #     secretKeyRef:
+        #       key: mysql_admin_password
+        #       name: mysql-secret
+        # - name: MYSQL_USER
+        #   value: clarus
+        # - name: MYSQL_DATABASE
+        #   value: phonebook
+        
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-pvc
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: mysql-storage
+
