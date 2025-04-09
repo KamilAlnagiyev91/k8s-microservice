@@ -101,7 +101,7 @@ SECRETS AND CONFIGMAP
 
 - Git & Github for Version Control System
 
-### At the end of the project, students will be able to;
+### At the end of the project, you will be able to;
 
 - configure a connection to the `MySQL` database.
 
