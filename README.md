@@ -121,6 +121,7 @@ kubectl get svc -n ingress-nginx
 
 ```
 - configure ingress.yaml file in your project folder. Edit "host: phonebook.io"  parameters values with your domain name.
+- in browser you type http://yourdomain, then you see webserver-service, http://yourdomain/reslut you see resultserver-service.
 
 ## install Metallb for loadbalancer in your kubernetes cluster from url:
 
